@@ -2,7 +2,7 @@ from fastapi import APIRouter, UploadFile, File
 from openai import OpenAI
 import os
 
-from app.knowledge.hybrid_answer import answer_with_hybrid_research
+#from app.knowledge.hybrid_answer import answer_with_hybrid_research
 
 
 router = APIRouter()
@@ -28,7 +28,7 @@ async def voice_ask(file: UploadFile = File(...)):
             file=audio_file
         )
 
-    answer = answer_with_hybrid_research(transcript.text)
+    #answer = answer_with_hybrid_research(transcript.text)
 
     speech = client.audio.speech.create(
         model="gpt-4o-mini-tts",
