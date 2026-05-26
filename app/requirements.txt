@@ -5,9 +5,5 @@ openai
 reportlab
 python-multipart
 pypdf
-chromadb
-sentence-transformers
-langchain
-langchain-text-splitters
 requests
 beautifulsoup4
