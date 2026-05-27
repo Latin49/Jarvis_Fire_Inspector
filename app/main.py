@@ -15,10 +15,32 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+
+from fastapi.responses import Response
+from openai import OpenAI
+import os
 
 class Question(BaseModel):
     question: str
+
+class SpeakRequest(BaseModel):
+    text: str
+
+
+@app.post("/speak")
+def speak(request: SpeakRequest):
+    audio = client.audio.speech.create(
+        model="gpt-4o-mini-tts",
+        voice="onyx",
+        input=request.text,
+    )
+
+    return Response(
+        content=audio.content,
+        media_type="audio/mpeg",
+    )
 
 
 @app.get("/")
