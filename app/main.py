@@ -6,6 +6,10 @@ from app.ai.openai_service import ask_jarvis
 from app.routes.inspection import router as inspection_router
 from app.routes.voice import router as voice_router
 
+from fastapi.responses import Response
+from openai import OpenAI
+import os
+
 app = FastAPI(title="Jarvis Fire Inspector")
 
 app.add_middleware(
